@@ -84,7 +84,7 @@ Si necesitas cambiar la URL de conexión entre el frontend y el backend, sigue e
 ### 1. Clona el repositorio
 
 ```bash
-git clone <https://github.com/marianadiaz179/Vinilos-MISW-4203.git>
+git clone <https://github.com/dacostaortiz/Vinilos-MISW-4203.git>
 
 ```
 
