@@ -7,9 +7,11 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
 import android.os.Bundle
+import androidx.navigation.findNavController
 import com.app.vinilos_misw4203.R
 import com.app.vinilos_misw4203.databinding.PerformerItemBinding
 import com.app.vinilos_misw4203.models.Performer
+import com.app.vinilos_misw4203.ui.PerformerFragmentDirections
 
 class PerformerAdapter : RecyclerView.Adapter<PerformerAdapter.PerformerViewHolder>() {
 
@@ -30,16 +32,14 @@ class PerformerAdapter : RecyclerView.Adapter<PerformerAdapter.PerformerViewHold
     }
 
     override fun onBindViewHolder(holder: PerformerViewHolder, position: Int) {
+        val performer = performers[position]
         holder.viewDataBinding.also {
-            it.performer = performers[position]
+            it.performer = performer
 
-            it.cardContainer.setOnClickListener {
-                val context = holder.itemView.context
-                android.widget.Toast.makeText(
-                    context,
-                    "Esta funcionalidad aún no está lista",
-                    android.widget.Toast.LENGTH_SHORT
-                ).show()
+            it.cardContainer.setOnClickListener { view ->
+                val action = PerformerFragmentDirections
+                    .actionPerformerFragmentToPerformerDetailFragment(performer.performerId)
+                view.findNavController().navigate(action)
             }
         }
     }

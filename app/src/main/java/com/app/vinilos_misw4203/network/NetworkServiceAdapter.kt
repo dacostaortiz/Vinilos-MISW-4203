@@ -10,6 +10,7 @@ import com.android.volley.toolbox.Volley
 import com.app.vinilos_misw4203.models.Album
 import com.app.vinilos_misw4203.models.Performer
 import org.json.JSONArray
+import org.json.JSONObject
 
 class NetworkServiceAdapter constructor(context: Context) {
     companion object{
@@ -67,7 +68,22 @@ class NetworkServiceAdapter constructor(context: Context) {
                 onError(it)
             }))
     }
-    
+    fun getPerformer(id: Int, onComplete: (resp: Performer) -> Unit, onError: (error: VolleyError) -> Unit){
+        requestQueue.add(getRequest("musicians/$id",
+            Response.Listener<String> { response ->
+                val item = JSONObject(response)
+                val performer = Performer(performerId = item.getInt("id"),
+                                        name = item.getString("name"),
+                                        image = item.getString("image"),
+                                        description = item.getString("description"),
+                                        performerType = "musician", //item.getString("type"),
+                                        birthDate = item.optString("birthDate", null))
+                onComplete(performer)
+            },
+            Response.ErrorListener {
+                onError(it)
+            }))
+    }
     private fun getRequest(path:String, responseListener: Response.Listener<String>, errorListener: Response.ErrorListener): StringRequest {
         return StringRequest(Request.Method.GET, BASE_URL+path, responseListener,errorListener)
     }
