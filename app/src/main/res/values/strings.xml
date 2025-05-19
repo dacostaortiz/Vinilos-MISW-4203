@@ -18,6 +18,7 @@
     <string name="album_description_placeholder">Descripcion del album</string>
     <string name="txt_no_comments">No hay comentarios para este álbum</string>
     <string name="title_albums">Albums</string>
+    <string name="title_performers">Artistas</string>
     <string name="title_collectors">Coleccionistas</string>
     <string name="title_comments">Comentarios del álbum</string>
 </resources>

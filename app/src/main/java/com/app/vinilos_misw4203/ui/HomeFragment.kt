@@ -27,9 +27,9 @@ class HomeFragment : Fragment() {
             findNavController().navigate(R.id.action_homeFragment_to_albumFragment)
         }
 
-        binding.artistContainer.setOnClickListener {
-            // Mostrar un Toast diciendo que la funcionalidad no está disponible
-            Toast.makeText(requireContext(), "Esta funcionalidad aún no está lista", Toast.LENGTH_SHORT).show()
+        binding.performerContainer.setOnClickListener {
+            // Navegar al fragmento de performer
+            findNavController().navigate(R.id.action_homeFragment_to_performerFragment)
         }
 
         binding.collectionContainer.setOnClickListener {

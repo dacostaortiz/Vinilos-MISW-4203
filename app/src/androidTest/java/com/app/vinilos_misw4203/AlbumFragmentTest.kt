@@ -23,13 +23,13 @@ class AlbumFragmentTest {
     fun testAlbumFragmentVisibilityAfterNavigation() {
         onView(withId(R.id.albumContainer)).perform(click())
 
-        onView(allOf(withText("Álbumes"), isDescendantOfA(withId(R.id.albumFragment))))
+        onView(allOf(withText("Álbums"), isDescendantOfA(withId(R.id.albumFragment))))
             .check(matches(isDisplayed()))
 
         onView(withId(R.id.albumsRv)).check(matches(isCompletelyDisplayed()))
         onView(withId(R.id.progressBar)).check(matches(withEffectiveVisibility(Visibility.GONE)))
 
-        onView(withText("Mira todos los álbumes que tenemos para ti")).check(matches(isDisplayed()))
+        onView(withText("Mira todos los álbums que tenemos para ti")).check(matches(isDisplayed()))
     }
 
     @Test
@@ -45,7 +45,7 @@ class AlbumFragmentTest {
     fun testTextViewVisibilityInAlbumFragment() {
         onView(withId(R.id.albumContainer)).perform(click())
 
-        onView(withText("Mira todos los álbumes que tenemos para ti")).check(matches(isDisplayed()))
+        onView(withText("Mira todos los álbums que tenemos para ti")).check(matches(isDisplayed()))
     }
 
     @Test
