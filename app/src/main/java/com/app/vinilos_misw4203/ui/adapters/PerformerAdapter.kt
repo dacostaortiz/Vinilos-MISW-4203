@@ -12,6 +12,10 @@ import com.app.vinilos_misw4203.R
 import com.app.vinilos_misw4203.databinding.PerformerItemBinding
 import com.app.vinilos_misw4203.models.Performer
 import com.app.vinilos_misw4203.ui.PerformerFragmentDirections
+import androidx.core.net.toUri
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.request.RequestOptions
 
 class PerformerAdapter : RecyclerView.Adapter<PerformerAdapter.PerformerViewHolder>() {
 
@@ -42,6 +46,7 @@ class PerformerAdapter : RecyclerView.Adapter<PerformerAdapter.PerformerViewHold
                 view.findNavController().navigate(action)
             }
         }
+        holder.bind(performer)
     }
 
     override fun getItemCount(): Int {
@@ -53,6 +58,16 @@ class PerformerAdapter : RecyclerView.Adapter<PerformerAdapter.PerformerViewHold
         companion object {
             @LayoutRes
             val LAYOUT = R.layout.performer_item
+        }
+
+        fun bind(performer: Performer) {
+            Glide.with(itemView)
+                .load(performer.image.toUri().buildUpon().scheme("https").build())
+                .apply(RequestOptions()
+                    .placeholder(R.drawable.loading_animation)
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .error(R.drawable.ic_broken_image))
+                .into(viewDataBinding.performerImage) // Make sure this matches your XML ID
         }
     }
 }
