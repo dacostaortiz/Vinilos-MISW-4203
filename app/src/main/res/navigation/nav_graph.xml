@@ -25,12 +25,29 @@
     <fragment
         android:id="@+id/albumFragment"
         android:name="com.app.vinilos_misw4203.ui.AlbumFragment"
-        android:label="Álbumes"
+        android:label="Álbums"
         tools:layout="@layout/album_fragment" />
     <!-- Definición de PerformerFragment como el tercer fragmento -->
     <fragment
         android:id="@+id/performerFragment"
         android:name="com.app.vinilos_misw4203.ui.PerformerFragment"
         android:label="Artistas"
-        tools:layout="@layout/performer_fragment" />
+        tools:layout="@layout/performer_fragment">
+
+        <!-- Acción a PerformerDetailFragment -->
+        <action
+            android:id="@+id/action_performerFragment_to_performerDetailFragment"
+            app:destination="@id/performerDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/performerDetailFragment"
+        android:name="com.app.vinilos_misw4203.ui.PerformerDetailFragment"
+        android:label="Detalle del Artista"
+        tools:layout="@layout/performer_detail_fragment">
+
+        <argument
+            android:name="performerId"
+            app:argType="integer" />
+    </fragment>
 </navigation>

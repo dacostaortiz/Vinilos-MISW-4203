@@ -10,10 +10,14 @@ import com.android.volley.toolbox.Volley
 import com.app.vinilos_misw4203.models.Album
 import com.app.vinilos_misw4203.models.Performer
 import org.json.JSONArray
+import org.json.JSONObject
+import kotlin.coroutines.suspendCoroutine
+import kotlin.coroutines.resume
+import kotlin.coroutines.resumeWithException
 
 class NetworkServiceAdapter constructor(context: Context) {
-    companion object{
-        const val BASE_URL= "http://10.0.2.2:3000/"
+    companion object {
+        const val BASE_URL = "http://10.0.2.2:3000/"
         var instance: NetworkServiceAdapter? = null
         fun getInstance(context: Context) =
             instance ?: synchronized(this) {
@@ -23,7 +27,6 @@ class NetworkServiceAdapter constructor(context: Context) {
             }
     }
     private val requestQueue: RequestQueue by lazy {
-        // applicationContext keeps you from leaking the Activity or BroadcastReceiver if someone passes one in.
         Volley.newRequestQueue(context.applicationContext)
     }
     fun getAlbums(onComplete:(resp:List<Album>)->Unit, onError: (error:VolleyError)->Unit){
@@ -67,8 +70,45 @@ class NetworkServiceAdapter constructor(context: Context) {
                 onError(it)
             }))
     }
-    
-    private fun getRequest(path:String, responseListener: Response.Listener<String>, errorListener: Response.ErrorListener): StringRequest {
-        return StringRequest(Request.Method.GET, BASE_URL+path, responseListener,errorListener)
+    fun getPerformer(id: Int, onComplete: (resp: Performer) -> Unit, onError: (error: VolleyError) -> Unit) {
+        requestQueue.add(getRequest("musicians/$id",
+            Response.Listener<String> { response ->
+                val item = JSONObject(response)
+                val performer = Performer(performerId = item.getInt("id"),
+                    name = item.getString("name"),
+                    image = item.getString("image"),
+                    description = item.getString("description"),
+                    performerType = "musician",
+                    birthDate = item.optString("birthDate", null))
+                onComplete(performer)
+            },
+            Response.ErrorListener {
+                onError(it)
+            }))
+    }
+    suspend fun getAlbumsCoroutine(): List<Album> = suspendCoroutine { continuation ->
+        getAlbums(
+            onComplete = { albums -> continuation.resume(albums) },
+            onError = { error -> continuation.resumeWithException(error) }
+        )
+    }
+
+    suspend fun getPerformersCoroutine(): List<Performer> = suspendCoroutine { continuation ->
+        getPerformers(
+            onComplete = { performers -> continuation.resume(performers) },
+            onError = { error -> continuation.resumeWithException(error) }
+        )
+    }
+
+    suspend fun getPerformerCoroutine(id: Int): Performer = suspendCoroutine { continuation ->
+        getPerformer(
+            id,
+            onComplete = { performer -> continuation.resume(performer) },
+            onError = { error -> continuation.resumeWithException(error) }
+        )
+    }
+
+    private fun getRequest(path: String, responseListener: Response.Listener<String>, errorListener: Response.ErrorListener): StringRequest {
+        return StringRequest(Request.Method.GET, BASE_URL + path, responseListener, errorListener)
     }
 }
