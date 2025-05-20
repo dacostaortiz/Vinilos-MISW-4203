@@ -2,9 +2,9 @@ package com.app.vinilos_misw4203.viewmodels
 
 import android.app.Application
 import androidx.lifecycle.*
-import com.android.volley.VolleyError
 import com.app.vinilos_misw4203.models.Performer
 import com.app.vinilos_misw4203.repositories.PerformerDetailRepository
+import kotlinx.coroutines.launch
 
 class PerformerDetailViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -20,16 +20,16 @@ class PerformerDetailViewModel(application: Application) : AndroidViewModel(appl
     val isNetworkErrorShown: LiveData<Boolean> = _isNetworkErrorShown
 
     fun refreshPerformerDetail(id: Int) {
-        repository.refreshData(id,
-            onSuccess = { p ->
-                _performer.value = p
+        viewModelScope.launch {
+            try {
+                val performer = repository.refreshData(id)
+                _performer.value = performer
                 _eventNetworkError.value = false
                 _isNetworkErrorShown.value = false
-            },
-            onError = { error: VolleyError ->
+            } catch (e: Exception) {
                 _eventNetworkError.value = true
             }
-        )
+        }
     }
 
     fun onNetworkErrorShown() {

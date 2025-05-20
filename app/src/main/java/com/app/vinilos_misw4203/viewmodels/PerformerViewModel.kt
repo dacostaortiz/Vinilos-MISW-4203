@@ -6,6 +6,7 @@ import androidx.lifecycle.*
 import com.android.volley.VolleyError
 import com.app.vinilos_misw4203.models.Performer
 import com.app.vinilos_misw4203.repositories.PerformerRepository
+import kotlinx.coroutines.launch
 
 class PerformerViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -25,14 +26,17 @@ class PerformerViewModel(application: Application) : AndroidViewModel(applicatio
     }
 
     private fun refreshDataFromNetwork() {
-        performerRepository.refreshData({ performers ->
-            _performers.postValue(performers)
-            _eventNetworkError.postValue(false)
-            _isNetworkErrorShown.postValue(false)
-        }, { error ->
-            _eventNetworkError.postValue(true)
-            Log.e("PerformerViewModel", "Error fetching performers", error)
-        })
+        viewModelScope.launch {
+            try {
+                val performerList = performerRepository.refreshData()
+                _performers.value = performerList
+                _eventNetworkError.value = false
+                _isNetworkErrorShown.value = false
+            } catch (e: Exception) {
+                _eventNetworkError.value = true
+                Log.e("PerformerViewModel", "Error fetching performers", e)
+            }
+        }
     }
 
     fun onNetworkErrorShown() {

@@ -12,19 +12,15 @@ class PerformerRepository(val application: Application) {
         private const val TAG = "PerformerRepository"
     }
 
-    fun refreshData(callback: (List<Performer>) -> Unit, onError: (VolleyError) -> Unit) {
-        Log.d(TAG, "Iniciando carga de artistas desde NetworkServiceAdapter...")
-
-        NetworkServiceAdapter.getInstance(application).getPerformers({ performers ->
+    suspend fun refreshData(): List<Performer> {
+        Log.d(TAG, "Iniciando carga de artistas con coroutines...")
+        return try {
+            val performers = NetworkServiceAdapter.getInstance(application).getPerformersCoroutine()
             Log.d(TAG, "Artistas recibidos correctamente. Total: ${performers.size}")
-            // Print details for each performer
-            performers.forEach {
-                Log.d(TAG, "Artista: ${it.name} (Tipo: ${it.performerType})")
-            }
-            callback(performers)
-        }, { error ->
+            performers
+        } catch (error: VolleyError) {
             Log.e(TAG, "Error al obtener los artistas", error)
-            onError(error)
-        })
+            throw error
+        }
     }
 }

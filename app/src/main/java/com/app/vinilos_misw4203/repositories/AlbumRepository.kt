@@ -12,19 +12,15 @@ class AlbumRepository(val application: Application) {
         private const val TAG = "AlbumRepository"
     }
 
-    fun refreshData(callback: (List<Album>) -> Unit, onError: (VolleyError) -> Unit) {
-        Log.d(TAG, "Iniciando carga de álbumes desde NetworkServiceAdapter...")
-
-        NetworkServiceAdapter.getInstance(application).getAlbums({ albums ->
+    suspend fun refreshData(): List<Album> {
+        Log.d(TAG, "Iniciando carga de álbumes con coroutines...")
+        return try {
+            val albums = NetworkServiceAdapter.getInstance(application).getAlbumsCoroutine()
             Log.d(TAG, "Álbumes recibidos correctamente. Total: ${albums.size}")
-            // Puedes imprimir el contenido si no es muy grande
-            albums.forEach {
-                Log.d(TAG, "Álbum: ${it.name} (ID: ${it.albumId}) - ${it.coverUrl}")
-            }
-            callback(albums)
-        }, { error ->
+            albums
+        } catch (error: VolleyError) {
             Log.e(TAG, "Error al obtener los álbumes", error)
-            onError(error)
-        })
+            throw error
+        }
     }
 }

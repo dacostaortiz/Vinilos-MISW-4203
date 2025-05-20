@@ -12,22 +12,17 @@ class PerformerDetailRepository(val application: Application) {
         private const val TAG = "PerformerDetailRepo"
     }
 
-    fun refreshData(
-        id: Int,
-        onSuccess: (Performer) -> Unit,
-        onError: (VolleyError) -> Unit
-    ) {
+    suspend fun refreshData(id: Int): Performer {
         Log.d(TAG, "Iniciando carga de artista con ID: $id")
-        NetworkServiceAdapter.getInstance(application)
-            .getPerformer(id,
-                { performer ->
-                    Log.d(TAG, "Artista recibido: ${performer.name} (ID: ${performer.performerId})")
-                    onSuccess(performer)
-                },
-                { error ->
-                    Log.e(TAG, "Error al obtener artista", error)
-                    onError(error)
-                }
-            )
+        return try {
+            val performer = NetworkServiceAdapter
+                .getInstance(application)
+                .getPerformerCoroutine(id)
+            Log.d(TAG, "Artista recibido: ${performer.name} (ID: ${performer.performerId})")
+            performer
+        } catch (error: VolleyError) {
+            Log.e(TAG, "Error al obtener artista", error)
+            throw error
+        }
     }
 }
