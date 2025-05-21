@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.navigation.safe.args)
     id("kotlin-kapt")
+    id("com.google.devtools.ksp") version libs.versions.ksp.get()
 }
 
 android {
@@ -46,8 +47,8 @@ android {
 dependencies {
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.ktx)
-    kapt(         libs.androidx.room.compiler)
-    kapt(         libs.glideCompiler)
+    ksp(libs.androidx.room.compiler)
+    ksp(libs.glideCompiler)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
