@@ -1,11 +1,10 @@
-import org.jetbrains.kotlin.storage.CacheResetOnProcessCanceled.enabled
-
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.navigation.safe.args)
     id("kotlin-kapt")
+    id("com.google.devtools.ksp") version libs.versions.ksp.get()
 }
 
 android {
@@ -48,8 +47,8 @@ android {
 dependencies {
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.ktx)
-    kapt(         libs.androidx.room.compiler)
-    kapt(         libs.glideCompiler)
+    ksp(libs.androidx.room.compiler)
+    ksp(libs.glideCompiler)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
@@ -67,7 +66,6 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.lifecycle.runtime.compose)
     implementation(libs.androidx.lifecycle.process)
-    implementation(libs.androidx.lifecycle.viewModelCompose)
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.navigation)
     implementation(libs.androidx.navigation.ui.ktx)

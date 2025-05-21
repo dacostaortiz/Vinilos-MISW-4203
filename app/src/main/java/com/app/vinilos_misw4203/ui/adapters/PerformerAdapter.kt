@@ -4,9 +4,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
-import androidx.databinding.ViewDataBinding
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import android.os.Bundle
 import androidx.navigation.findNavController
 import com.app.vinilos_misw4203.R
 import com.app.vinilos_misw4203.databinding.PerformerItemBinding
@@ -19,10 +18,15 @@ import com.bumptech.glide.request.RequestOptions
 
 class PerformerAdapter : RecyclerView.Adapter<PerformerAdapter.PerformerViewHolder>() {
 
-    var performers: List<Performer> = emptyList()
+    private var _performers: List<Performer> = emptyList()
+
+    var performers: List<Performer>
+        get() = _performers
         set(value) {
-            field = value
-            notifyDataSetChanged()
+            val diffCallback = PerformerDiffCallback(_performers, value)
+            val diffResult = DiffUtil.calculateDiff(diffCallback)
+            _performers = value
+            diffResult.dispatchUpdatesTo(this)
         }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PerformerViewHolder {
@@ -67,7 +71,25 @@ class PerformerAdapter : RecyclerView.Adapter<PerformerAdapter.PerformerViewHold
                     .placeholder(R.drawable.loading_animation)
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .error(R.drawable.ic_broken_image))
-                .into(viewDataBinding.performerImage) // Make sure this matches your XML ID
+                .into(viewDataBinding.performerImage)
+        }
+    }
+
+    private class PerformerDiffCallback(
+        private val oldList: List<Performer>,
+        private val newList: List<Performer>
+    ) : DiffUtil.Callback() {
+
+        override fun getOldListSize() = oldList.size
+
+        override fun getNewListSize() = newList.size
+
+        override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+            return oldList[oldItemPosition].performerId == newList[newItemPosition].performerId
+        }
+
+        override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+            return oldList[oldItemPosition] == newList[newItemPosition]
         }
     }
 }
