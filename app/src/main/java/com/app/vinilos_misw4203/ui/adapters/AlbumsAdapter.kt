@@ -4,9 +4,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
-import androidx.navigation.findNavController
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import android.os.Bundle
 import com.app.vinilos_misw4203.R
 import com.app.vinilos_misw4203.databinding.AlbumItemBinding
 import com.app.vinilos_misw4203.models.Album
@@ -17,10 +16,15 @@ import com.bumptech.glide.request.RequestOptions
 
 class AlbumsAdapter : RecyclerView.Adapter<AlbumsAdapter.AlbumViewHolder>(){
 
-    var albums :List<Album> = emptyList()
+    private var _albums: List<Album> = emptyList()
+
+    var albums: List<Album>
+        get() = _albums
         set(value) {
-            field = value
-            notifyDataSetChanged()
+            val diffCallback = AlbumDiffCallback(_albums, value)
+            val diffResult = DiffUtil.calculateDiff(diffCallback)
+            _albums = value
+            diffResult.dispatchUpdatesTo(this)
         }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AlbumViewHolder {
@@ -52,7 +56,6 @@ class AlbumsAdapter : RecyclerView.Adapter<AlbumsAdapter.AlbumViewHolder>(){
         return albums.size
     }
 
-
     class AlbumViewHolder(val viewDataBinding: AlbumItemBinding) :
         RecyclerView.ViewHolder(viewDataBinding.root) {
         companion object {
@@ -71,4 +74,21 @@ class AlbumsAdapter : RecyclerView.Adapter<AlbumsAdapter.AlbumViewHolder>(){
         }
     }
 
+    private class AlbumDiffCallback(
+        private val oldList: List<Album>,
+        private val newList: List<Album>
+    ) : DiffUtil.Callback() {
+
+        override fun getOldListSize() = oldList.size
+
+        override fun getNewListSize() = newList.size
+
+        override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+            return oldList[oldItemPosition].albumId == newList[newItemPosition].albumId
+        }
+
+        override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+            return oldList[oldItemPosition] == newList[newItemPosition]
+        }
+    }
 }

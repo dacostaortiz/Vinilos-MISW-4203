@@ -4,7 +4,7 @@
         <item name="colorPrimary">@color/verde_oscuro_1</item>
         <item name="colorPrimaryVariant">@color/verde_oscuro_2</item>
         <item name="colorOnPrimary">@color/blanco</item>
-        <item name="android:statusBarColor" tools:targetApi="l">@color/verde_oscuro_3</item>
+        <item name="android:statusBarColor" tools:targetApi="l" tools:ignore="ObsoleteSdkInt">@color/verde_oscuro_3</item>
         <item name="actionBarTheme">@style/ActionBarLeftAligned</item>
     </style>
 
