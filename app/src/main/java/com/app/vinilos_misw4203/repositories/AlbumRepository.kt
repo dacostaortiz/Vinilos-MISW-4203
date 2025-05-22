@@ -5,26 +5,45 @@ import android.util.Log
 import com.android.volley.VolleyError
 import com.app.vinilos_misw4203.network.NetworkServiceAdapter
 import com.app.vinilos_misw4203.models.Album
+import com.app.vinilos_misw4203.database.AppDatabase
+import com.app.vinilos_misw4203.database.entities.AlbumEntity
 
 class AlbumRepository(val application: Application) {
+    private val networkService = NetworkServiceAdapter.getInstance(application)
+    private val albumDao = AppDatabase.getDatabase(application).albumDao()
+    private val CACHE_TIMEOUT = 15 * 60 * 1000L // 15 minutes cache validity
 
     companion object {
         private const val TAG = "AlbumRepository"
     }
 
-    fun refreshData(callback: (List<Album>) -> Unit, onError: (VolleyError) -> Unit) {
-        Log.d(TAG, "Iniciando carga de álbumes desde NetworkServiceAdapter...")
+    suspend fun refreshData(): List<Album> {
+        Log.d(TAG, "Revisando caché de álbumes...")
 
-        NetworkServiceAdapter.getInstance(application).getAlbums({ albums ->
-            Log.d(TAG, "Álbumes recibidos correctamente. Total: ${albums.size}")
-            // Puedes imprimir el contenido si no es muy grande
-            albums.forEach {
-                Log.d(TAG, "Álbum: ${it.name} (ID: ${it.albumId}) - ${it.coverUrl}")
+        val currentTime = System.currentTimeMillis()
+        val cacheTime = currentTime - CACHE_TIMEOUT
+        val cachedAlbums = albumDao.getFreshAlbums(cacheTime)
+
+        if (cachedAlbums.isNotEmpty()) {
+            Log.d(TAG, "Usando datos en cache - se encontraron ${cachedAlbums.size} albums")
+            return cachedAlbums.map { it.toAlbum() }
+        }
+
+        return try {
+            Log.d(TAG, "Iniciando carga de álbums desde la red con corrutinas...")
+            val networkAlbums = networkService.getAlbumsCoroutine()
+            albumDao.insertAll(networkAlbums.map { AlbumEntity.fromAlbum(it) })
+            Log.d(TAG, "Álbums recibidos correctamente. Total: ${networkAlbums.size}")
+
+            networkAlbums
+        } catch (error: VolleyError) {
+            Log.e(TAG, "Error de red al obtener los álbums", error)
+            val allCachedAlbums = albumDao.getAllAlbums()
+            if (allCachedAlbums.isNotEmpty()) {
+                Log.d(TAG, "Usando datos en caché - se encontraron ${allCachedAlbums.size} albums")
+                return allCachedAlbums.map { it.toAlbum() }
             }
-            callback(albums)
-        }, { error ->
-            Log.e(TAG, "Error al obtener los álbumes", error)
-            onError(error)
-        })
+            throw error
+        }
     }
 }

@@ -2,7 +2,6 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_graph"
     app:startDestination="@id/homeFragment"> <!-- Cambiado a homeFragment -->
 
     <!-- Definición de HomeFragment como primer fragmento -->
@@ -15,12 +14,39 @@
         <action
             android:id="@+id/action_homeFragment_to_albumFragment"
             app:destination="@id/albumFragment" />
+        <!-- Acción a PerformerFragment -->
+        <action
+            android:id="@+id/action_homeFragment_to_performerFragment"
+            app:destination="@id/performerFragment" />
     </fragment>
 
     <!-- Definición de AlbumFragment como el segundo fragmento -->
     <fragment
         android:id="@+id/albumFragment"
         android:name="com.app.vinilos_misw4203.ui.AlbumFragment"
-        android:label="Álbumes"
+        android:label="Álbums"
         tools:layout="@layout/album_fragment" />
+    <!-- Definición de PerformerFragment como el tercer fragmento -->
+    <fragment
+        android:id="@+id/performerFragment"
+        android:name="com.app.vinilos_misw4203.ui.PerformerFragment"
+        android:label="Artistas"
+        tools:layout="@layout/performer_fragment">
+
+        <!-- Acción a PerformerDetailFragment -->
+        <action
+            android:id="@+id/action_performerFragment_to_performerDetailFragment"
+            app:destination="@id/performerDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/performerDetailFragment"
+        android:name="com.app.vinilos_misw4203.ui.PerformerDetailFragment"
+        android:label="Detalle del Artista"
+        tools:layout="@layout/performer_detail_fragment">
+
+        <argument
+            android:name="performerId"
+            app:argType="integer" />
+    </fragment>
 </navigation>

@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="26dp"
-    android:background="@android:color/white">
+    android:padding="26dp">
 
     <LinearLayout
         android:orientation="vertical"
@@ -17,7 +16,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:text="Vinilos"
+            android:text="Vinilos App"
             android:textSize="32sp"
             android:textStyle="bold"
             android:textColor="@color/negro"
@@ -32,163 +31,128 @@
             android:text="¿Qué deseas ver hoy?"
             android:textSize="18sp"
             android:textColor="@color/gris_oscuro"
-            android:layout_marginBottom="34dp"/>
+            android:layout_marginBottom="34dp"
+            android:textStyle="italic"/>
 
-        <!-- Opción 1: Álbumes -->
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/albumContainer"
+        <!-- GridLayout para las tarjetas en 2 columnas -->
+        <GridLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="25dp"
-            android:clickable="true"
-            android:focusable="true"
-            app:strokeColor="@color/verde_oscuro_2"
-            app:strokeWidth="1dp"
-            app:cornerRadius="16dp"
-            app:contentPadding="16dp">
+            android:columnCount="2"
+            android:rowCount="2"
+            android:orientation="horizontal"
+            android:useDefaultMargins="true">
 
-            <LinearLayout
-                android:layout_width="match_parent"
+            <!-- Opción 1: Álbumes -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/albumContainer"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="8dp">
+                android:layout_columnWeight="1"
+                android:layout_margin="8dp"
+                android:clickable="true"
+                android:focusable="true"
+                app:strokeColor="@color/verde_oscuro_2"
+                app:strokeWidth="1dp"
+                app:cornerRadius="16dp"
+                app:contentPadding="16dp">
 
-                <!-- Imagen a la izquierda -->
-                <ImageView
-                    android:id="@+id/album_cover1"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:src="@drawable/album_container"
-                    android:layout_marginEnd="16dp"
-                    android:scaleType="centerCrop"/>
-
-                <!-- Texto a la derecha -->
                 <LinearLayout
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginTop="20dp"
                     android:orientation="vertical"
-                    android:gravity="center_vertical">
+                    android:gravity="center">
 
-                    <!-- Nombre del álbum -->
+                    <ImageView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:src="@drawable/album_container"
+                        android:scaleType="centerCrop"/>
+
                     <TextView
-                        android:id="@+id/textView61"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
                         android:text="Álbumes"
                         android:textSize="16sp"
                         android:textColor="@color/negro"
                         android:textStyle="bold" />
                 </LinearLayout>
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
+            </com.google.android.material.card.MaterialCardView>
 
-        <!-- Opción 2: Artistas -->
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/artistContainer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="25dp"
-            android:clickable="true"
-            android:focusable="true"
-            app:strokeColor="@color/verde_oscuro_2"
-            app:strokeWidth="1dp"
-            app:cornerRadius="16dp"
-            app:contentPadding="16dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
+            <!-- Opción 2: Artistas -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/performerContainer"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="8dp">
+                android:layout_columnWeight="1"
+                android:layout_margin="8dp"
+                android:clickable="true"
+                android:focusable="true"
+                app:strokeColor="@color/verde_oscuro_2"
+                app:strokeWidth="1dp"
+                app:cornerRadius="16dp"
+                app:contentPadding="16dp">
 
-                <!-- Imagen a la izquierda -->
-                <ImageView
-                    android:id="@+id/album_cover2"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:src="@drawable/artist_container"
-                    android:layout_marginEnd="16dp"
-                    android:scaleType="centerCrop"/>
-
-                <!-- Texto a la derecha -->
                 <LinearLayout
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:orientation="vertical"
-                    android:gravity="center_vertical">
+                    android:gravity="center">
 
-                    <!-- Nombre del álbum -->
+                    <ImageView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:src="@drawable/performer_container"
+                        android:scaleType="centerCrop"/>
+
                     <TextView
-                        android:id="@+id/textView62"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginTop="8dp"
                         android:text="Artistas"
                         android:textSize="16sp"
                         android:textColor="@color/negro"
                         android:textStyle="bold" />
                 </LinearLayout>
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
+            </com.google.android.material.card.MaterialCardView>
 
-        <!-- Opción 3: Colecciones -->
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/collectionContainer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="25dp"
-            android:clickable="true"
-            android:focusable="true"
-            app:strokeColor="@color/verde_oscuro_2"
-            app:strokeWidth="1dp"
-            app:cornerRadius="16dp"
-            app:contentPadding="16dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
+            <!-- Opción 3: Colecciones -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/collectionContainer"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="8dp">
+                android:layout_columnWeight="1"
+                android:layout_margin="8dp"
+                android:clickable="true"
+                android:focusable="true"
+                app:strokeColor="@color/verde_oscuro_2"
+                app:strokeWidth="1dp"
+                app:cornerRadius="16dp"
+                app:contentPadding="16dp">
 
-                <!-- Imagen a la izquierda -->
-                <ImageView
-                    android:id="@+id/album_cover3"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:src="@drawable/collection_container"
-                    android:layout_marginEnd="16dp"
-                    android:scaleType="centerCrop"/>
-
-                <!-- Texto a la derecha -->
                 <LinearLayout
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:orientation="vertical"
-                    android:gravity="center_vertical">
+                    android:gravity="center">
 
-                    <!-- Nombre del álbum -->
+                    <ImageView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:src="@drawable/collection_container"
+                        android:scaleType="centerCrop"/>
+
                     <TextView
-                        android:id="@+id/textView63"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginTop="8dp"
                         android:text="Colecciones"
                         android:textSize="16sp"
                         android:textColor="@color/negro"
                         android:textStyle="bold" />
                 </LinearLayout>
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
-
+            </com.google.android.material.card.MaterialCardView>
+        </GridLayout>
     </LinearLayout>
 </ScrollView>
