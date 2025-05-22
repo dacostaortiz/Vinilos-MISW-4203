@@ -6,7 +6,7 @@ Este proyecto es una aplicación móvil desarrollada en **Kotlin**, siguiendo el
 ---
 # !! Aviso Importante
 
-Al momento de esta entrega, la URL del backend, que originalmente estaba expuesta públicamente (https://backvynils-q6yc.onrender.com/albums), no está funcionando correctamente. El APK, que se encuentra en la carpeta `app/releases/vinilos.apk`, se generó manteniendo la URL de acceso público para garantizar que, en caso de que se solucione el problema, el APK funcione y se conecte correctamente al API en un dispositivo físico.
+Al momento de esta entrega, la URL del backend, que originalmente estaba expuesta públicamente (https://backvynils-q6yc.onrender.com/albums), no está funcionando correctamente. El APK, que se encuentra en la carpeta `app/releases/vinilos-Sprint2.apk`, se generó manteniendo la URL de acceso público para garantizar que, en caso de que se solucione el problema, el APK funcione y se conecte correctamente al API en un dispositivo físico.
 
 Sin embargo, en el código principal del repositorio, la URL que conecta al backend se ha actualizado a `10.0.2.2:3000` para facilitar las pruebas locales.(ya que esta es la IP que se expone en un simulador de Android). Para que la aplicación funcione correctamente de manera local, debes asegurarte de seguir los pasos de la sección del **README** para levantar el backend localmente, ya que esta es la URL que el código utilizará durante el desarrollo.
 
@@ -74,7 +74,7 @@ Si necesitas cambiar la URL de conexión entre el frontend y el backend, sigue e
 - Abre el archivo NetworkServiceAdapter.kt en el siguiente directorio:
 ```Vinilos-MISW-4203/app/src/main/java/com/app/vinilos_misw4203/network/NetworkServiceAdapter.kt```
 
-- En la línea 18, cambia la variable BASE_URL para que apunte a la URL correcta del backend, recuerda que la IP que se debe colocar es la que se genera entre el emulador y tu PC:
+- En la línea 20, cambia la variable BASE_URL para que apunte a la URL correcta del backend, recuerda que la IP que se debe colocar es la que se genera entre el emulador y tu PC:
 
     ```const val BASE_URL = "http://10.0.2.2:3000"  // Cambia aquí si es necesario```
 
@@ -128,16 +128,42 @@ Ejemplo: `sdk.dir=/Users/<your_user>/Library/Android/sdk`
 ./gradlew clean build
 ```
 
-## Pruebas Espresso
+## Resultados de pruebas
 
-Para esta entrega se ha definido que el alcance cubriría únicamente HU001, para ello se hicieron pruebas E2E en Espresso, el archivo se puede encontrar en `Vinilos-MISW-4203/app/src/androidTest/java/com/app/vinilos_misw4203/AlbumFragmentTest.kt`
+### Pruebas Espresso
+
+Para esta entrega se ha definido que el alcance cubriría las historias HU003 y HU004, para ello se hicieron pruebas E2E en Espresso, los archivos se pueden encontrar en `Vinilos-MISW-4203/app/src/androidTest/java/com/app/vinilos_misw4203/PerformerFragmentTest.kt` y en `Vinilos-MISW-4203/app/src/androidTest/java/com/app/vinilos_misw4203/PerformerDetailFragmentTest.kt`
 
 Para correr las pruebas desde Android Studio desde el directorio haga click derecho sobre el archivo y busque la opción que permita ejecutar estas pruebas, al finalizar la ejecución se podrá ver en la parte inferior de la terminal los resultados.
 
 Para evidencias de este sprint, se pueden encontrar los resultados de las pruebas en el siguiente link de la wiki:
-https://github.com/marianadiaz179/Vinilos-MISW-4203/wiki/Sprint-1#resultados-de-pruebas-e2e-espresso
+https://github.com/dacostaortiz/Vinilos-MISW-4203/wiki/Sprint-2#resultados-de-pruebas-e2e-espresso
 
+### Inspección del código
 
+Resultados después de correr code inspection en Android Studio con lint.
+https://github.com/dacostaortiz/Vinilos-MISW-4203/wiki/Sprint-2#code-inspection
+
+Luego de la ejecución de las microptimizaciones se tiene que ya no se tienen alertas de optimización. 
+https://github.com/dacostaortiz/Vinilos-MISW-4203/wiki/Sprint-2#despu%C3%A9s-de-micro-optimizaciones
+
+### Mejoras y micro-optimizaciones
+
+Se aprovechó para mejorar el código a través de la remoción de código inutilizado, la actialización de dependencias y librerías, la eliminación de los overdraw.
+
+También se implementaron buenas prácticas como el uso de caché para reducir el tráfico de red.
+
+https://github.com/dacostaortiz/Vinilos-MISW-4203/wiki/Sprint-2#micro-optimizaciones
+
+### Prácticas para evitar AnRs
+
+Se implementaron corrutinas y se mejoró el recyclerView con el uso de DiffUtil. 
+https://github.com/dacostaortiz/Vinilos-MISW-4203/wiki/Sprint-2#pr%C3%A1cticas-para-anrs
+
+### Profiler
+
+Se aprovechó el profiler de Android Studio para ejecutar las pruebas de desempeño.
+https://github.com/dacostaortiz/Vinilos-MISW-4203/wiki/Sprint-2#profiler
 
 ## Autores
 
