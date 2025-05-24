@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Vinyls App</string>
+    <string name="title_albums">Albums</string>
+    <string name="performers_title">Performers section title</string>
+    <string name="title_performers">Performers</string>
+    <string name="performer_slogan">Discover all available performers</string>
+    <string name="performer_content_desc">List of available performers</string>
+    <string name="albums">Albums</string>
+    <string name="albums_content_desc">Albums section title</string>
+    <string name="performer_image">Performer image</string>
+    <string name="progressBar_desc">Loading performer details</string>
+    <string name="performer_birthdate">Performer birth date</string>
+    <string name="birthdate_desc">Birth date:</string>
+    <string name="performer_type">Performer type</string>
+    <string name="performer_details">Performer details</string>
+    <string name="performer_desc">Performer description</string>
+    <string name="album_slogan">Check out all the albums we have for you</string>
+    <string name="home_title">Vinyls App</string>
+    <string name="home_subtitle">What would you like to see today?</string>
+    <string name="albums_option">Albums</string>
+    <string name="performers_option">Performer</string>
+    <string name="collections_option">Collections</string>
+    <string name="description_label">Description:</string>
+    <string name="loading_albums">Loading albums</string>
+    <string name="album_cover_icon">Album cover icon</string>
+    <string name="performer_icon">Performer icon</string>
+    <string name="collection_icon">Collection icon</string>
+</resources>

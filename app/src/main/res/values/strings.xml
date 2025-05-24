@@ -1,17 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Vinilos App</string>
-    <string name="title_albums">Albums</string>
-    <string name="artistas_titulo">Artistas sección título</string>
+    <string name="app_name">Aplicación Vinyls</string>
+    <string name="title_albums">Álbums</string>
+    <string name="performers_title">Título de la sección de artistas</string>
     <string name="title_performers">Artistas</string>
     <string name="performer_slogan">Descubre todos los artistas disponibles</string>
     <string name="performer_content_desc">Lista de artistas disponibles</string>
-    <string name="albums">Álbums</string>
-    <string name="albums_content_desc">Álbums sección título</string>
-    <string name="imagen_artista">Imagen del artista</string>
+    <string name="albums">Álbumes</string>
+    <string name="albums_content_desc">Título de la sección de álbums</string>
+    <string name="performer_image">Imagen del artista</string>
     <string name="progressBar_desc">Cargando detalles del artista</string>
     <string name="performer_birthdate">Fecha de nacimiento del artista</string>
     <string name="birthdate_desc">Fecha de nacimiento:</string>
     <string name="performer_type">Tipo de artista</string>
     <string name="performer_details">Detalles del artista</string>
     <string name="performer_desc">Descripción del artista</string>
+    <string name="album_slogan">Mira todos los álbums que tenemos para ti</string>
+    <string name="home_title">Vinilos App</string>
+    <string name="home_subtitle">¿Qué deseas ver hoy?</string>
+    <string name="albums_option">Álbums</string>
+    <string name="performers_option">Artistas</string>
+    <string name="collections_option">Colecciones</string>
+    <string name="description_label">Descripción:</string>
+    <string name="loading_albums">Cargando álbums</string>
+    <string name="album_cover_icon">Ícono de álbum</string>
+    <string name="performer_icon">Ícono de artista</string>
+    <string name="collection_icon">Ícono de colección</string>
 </resources>

@@ -49,6 +49,7 @@
                 android:layout_height="24dp"
                 android:layout_gravity="center"
                 android:src="@drawable/album"
+                android:contentDescription="@string/album_cover_icon"
                 app:tint="@android:color/white"/>
         </FrameLayout>
     </LinearLayout>
@@ -57,7 +58,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:text="Mira todos los álbums que tenemos para ti"
+        android:text="@string/album_slogan"
         android:textSize="16sp"
         android:textColor="@color/gris_oscuro"
         android:layout_marginBottom="36dp"
@@ -70,6 +71,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:visibility="gone"
+        android:contentDescription="@string/loading_albums"
         android:layout_marginBottom="16dp"/>
 
     <androidx.recyclerview.widget.RecyclerView

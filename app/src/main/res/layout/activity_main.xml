@@ -13,7 +13,7 @@
         android:minHeight="?attr/actionBarSize"
         android:background="@color/verde_oscuro_3"
         android:elevation="4dp"
-        android:title="Vinilos" 
+        android:title="@string/app_name"
         android:titleTextColor="@android:color/white"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:layout_constraintTop_toTopOf="parent"

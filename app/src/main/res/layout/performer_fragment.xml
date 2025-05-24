@@ -28,7 +28,7 @@
             android:textSize="28sp"
             android:textStyle="bold"
             android:textColor="@color/negro"
-            android:contentDescription="@string/artistas_titulo"
+            android:contentDescription="@string/performers_title"
             android:accessibilityHeading="true"/>
 
         <FrameLayout
@@ -49,6 +49,7 @@
                 android:layout_height="24dp"
                 android:layout_gravity="center"
                 android:src="@drawable/performer_container"
+                android:contentDescription="@string/performer_icon"
                 app:tint="@android:color/white"/>
         </FrameLayout>
     </LinearLayout>

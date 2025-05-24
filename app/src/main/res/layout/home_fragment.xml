@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:text="Vinilos App"
+            android:text="@string/home_title"
             android:textSize="32sp"
             android:textStyle="bold"
             android:textColor="@color/negro"
@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
-            android:text="¿Qué deseas ver hoy?"
+            android:text="@string/home_subtitle"
             android:textSize="18sp"
             android:textColor="@color/gris_oscuro"
             android:layout_marginBottom="34dp"
@@ -67,13 +67,14 @@
                         android:layout_width="60dp"
                         android:layout_height="60dp"
                         android:src="@drawable/album_container"
+                        android:contentDescription="@string/album_cover_icon"
                         android:scaleType="centerCrop"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:text="Álbumes"
+                        android:text="@string/albums_option"
                         android:textSize="16sp"
                         android:textColor="@color/negro"
                         android:textStyle="bold" />
@@ -104,13 +105,14 @@
                         android:layout_width="60dp"
                         android:layout_height="60dp"
                         android:src="@drawable/performer_container"
+                        android:contentDescription="@string/performer_icon"
                         android:scaleType="centerCrop"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:text="Artistas"
+                        android:text="@string/performers_option"
                         android:textSize="16sp"
                         android:textColor="@color/negro"
                         android:textStyle="bold" />
@@ -141,13 +143,14 @@
                         android:layout_width="60dp"
                         android:layout_height="60dp"
                         android:src="@drawable/collection_container"
+                        android:contentDescription="@string/collection_icon"
                         android:scaleType="centerCrop"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:text="Colecciones"
+                        android:text="@string/collections_option"
                         android:textSize="16sp"
                         android:textColor="@color/negro"
                         android:textStyle="bold" />
