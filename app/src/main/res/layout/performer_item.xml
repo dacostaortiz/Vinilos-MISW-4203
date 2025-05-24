@@ -18,6 +18,7 @@
             android:layout_marginBottom="15dp"
             android:clickable="true"
             android:focusable="true"
+            android:contentDescription="@{`Artista ` + performer.name}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -30,7 +31,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:padding="8dp">
 
                 <ImageView
                     android:id="@+id/performer_image"
@@ -38,13 +40,16 @@
                     android:layout_height="60dp"
                     android:layout_marginEnd="16dp"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/performer"/>
+                    android:src="@drawable/performer"
+                    android:contentDescription="@{`Foto del artista ` + performer.name}"
+                    android:importantForAccessibility="no"/>
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:gravity="center_vertical">
 
                     <TextView
                         android:id="@+id/performer_name"
@@ -52,6 +57,7 @@
                         android:layout_height="wrap_content"
                         android:text="@{performer.name}"
                         android:textSize="16sp"
+                        android:textStyle="bold"
                         android:textColor="@color/negro" />
 
                     <TextView

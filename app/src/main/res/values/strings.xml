@@ -9,4 +9,9 @@
     <string name="albums_content_desc">Álbums sección título</string>
     <string name="imagen_artista">Imagen del artista</string>
     <string name="progressBar_desc">Cargando detalles del artista</string>
+    <string name="performer_birthdate">Fecha de nacimiento del artista</string>
+    <string name="birthdate_desc">Fecha de nacimiento:</string>
+    <string name="performer_type">Tipo de artista</string>
+    <string name="performer_details">Detalles del artista</string>
+    <string name="performer_desc">Descripción del artista</string>
 </resources>

@@ -1,4 +1,5 @@
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -7,7 +8,9 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="24dp">
+            android:padding="24dp"
+            android:contentDescription="@string/performer_details"
+            android:importantForAccessibility="yes">
 
             <LinearLayout
                 android:id="@+id/performerDetailFragment"
@@ -16,15 +19,14 @@
                 android:orientation="vertical"
                 android:gravity="center_horizontal">
 
-                <!-- Imagen -->
                 <ImageView
                     android:id="@+id/performerImage"
                     android:layout_width="150dp"
                     android:layout_height="150dp"
                     android:contentDescription="@string/imagen_artista"
-                    android:layout_marginBottom="16dp" />
+                    android:layout_marginBottom="16dp"
+                    android:importantForAccessibility="yes" />
 
-                <!-- Nombre -->
                 <TextView
                     android:id="@+id/performerName"
                     android:layout_width="wrap_content"
@@ -32,34 +34,54 @@
                     android:textSize="22sp"
                     android:textStyle="bold"
                     android:layout_marginBottom="16dp"
-                    android:accessibilityHeading="true" />
+                    android:accessibilityHeading="true"
+                    android:focusable="true" />
 
-                <!-- Tipo -->
                 <TextView
                     android:id="@+id/performerType"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textStyle="italic"
-                    android:layout_marginBottom="12dp" />
+                    android:layout_marginBottom="12dp"
+                    android:contentDescription="@string/performer_type"
+                    android:labelFor="@id/performerName" />
 
-                <!-- Fecha de nacimiento (si existe) -->
+                <TextView
+                    android:id="@+id/performerBirthDateLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/birthdate_desc"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="4dp"
+                    android:visibility="gone"
+                    tools:visibility="visible" />
+
                 <TextView
                     android:id="@+id/performerBirthDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="12dp" />
+                    android:layout_marginBottom="12dp"
+                    android:contentDescription="@string/performer_birthdate" />
 
-                <!-- Descripción -->
+                <TextView
+                    android:id="@+id/performerDescriptionLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Descripción:"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="4dp" />
+
                 <TextView
                     android:id="@+id/performerDescription"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="#444444" />
+                    android:textColor="#444444"
+                    android:contentDescription="@string/performer_desc"
+                    android:accessibilityLiveRegion="polite" />
 
             </LinearLayout>
         </ScrollView>
 
-        <!-- Carga -->
         <ProgressBar
             android:id="@+id/progressBar"
             style="?android:attr/progressBarStyleLarge"
@@ -67,7 +89,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:visibility="gone"
-            android:contentDescription="@string/progressBar_desc" />
+            android:contentDescription="@string/progressBar_desc"
+            android:accessibilityLiveRegion="polite" />
 
     </FrameLayout>
 </layout>
