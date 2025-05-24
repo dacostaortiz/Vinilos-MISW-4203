@@ -1,4 +1,12 @@
 <resources>
     <string name="app_name">Vinilos App</string>
     <string name="title_albums">Albums</string>
+    <string name="artistas_titulo">Artistas sección título</string>
+    <string name="title_performers">Artistas</string>
+    <string name="performer_slogan">Descubre todos los artistas disponibles</string>
+    <string name="performer_content_desc">Lista de artistas disponibles</string>
+    <string name="albums">Álbums</string>
+    <string name="albums_content_desc">Álbums sección título</string>
+    <string name="imagen_artista">Imagen del artista</string>
+    <string name="progressBar_desc">Cargando detalles del artista</string>
 </resources>

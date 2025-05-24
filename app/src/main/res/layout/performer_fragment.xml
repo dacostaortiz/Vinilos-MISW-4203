@@ -24,10 +24,12 @@
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:text="Artistas"
+            android:text="@string/title_performers"
             android:textSize="28sp"
             android:textStyle="bold"
-            android:textColor="@color/negro"/>
+            android:textColor="@color/negro"
+            android:contentDescription="@string/artistas_titulo"
+            android:accessibilityHeading="true"/>
 
         <FrameLayout
             android:layout_width="40dp"
@@ -55,7 +57,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:text="Descubre todos los artistas disponibles"
+        android:text="@string/performer_slogan"
         android:textSize="16sp"
         android:textColor="@color/gris_oscuro"
         android:layout_marginBottom="36dp"
@@ -79,5 +81,6 @@
         android:clipToPadding="false"
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
-        android:scrollbars="vertical" />
+        android:scrollbars="vertical"
+        android:contentDescription="@string/performer_content_desc" />
 </LinearLayout>

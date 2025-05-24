@@ -24,10 +24,12 @@
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:text="Álbums"
+            android:text="@string/albums"
             android:textSize="28sp"
             android:textStyle="bold"
-            android:textColor="@color/negro"/>
+            android:textColor="@color/negro"
+            android:contentDescription="@string/albums_content_desc"
+            android:accessibilityHeading="true"/>
 
         <FrameLayout
             android:layout_width="40dp"
